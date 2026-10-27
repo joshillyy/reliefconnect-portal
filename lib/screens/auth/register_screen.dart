@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/utils/validators.dart';
+import '../../core/widgets/app_logo.dart';
 import '../../core/widgets/custom_button.dart';
 import '../../core/widgets/custom_text_field.dart';
 import '../../core/widgets/demo_mode_banner.dart';
@@ -107,6 +108,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const AppLogo(size: 40, showText: true),
+                      const SizedBox(height: 18),
                       const Text(
                         AppStrings.registerTitle,
                         style: TextStyle(

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/utils/validators.dart';
+import '../../core/widgets/app_logo.dart';
 import '../../core/widgets/custom_button.dart';
 import '../../core/widgets/custom_text_field.dart';
 import '../../core/widgets/demo_mode_banner.dart';
@@ -96,43 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: AppColors.primary,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: const Icon(
-                              Icons.volunteer_activism_rounded,
-                              color: Colors.white,
-                              size: 24,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                AppStrings.appName,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w800,
-                                  color: AppColors.primary,
-                                ),
-                              ),
-                              Text(
-                                'Disaster Relief Volunteer Portal',
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color: AppColors.textSecondary,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                      const AppLogo(size: 46, showText: true),
                       const SizedBox(height: 24),
                       const Text(
                         AppStrings.loginTitle,

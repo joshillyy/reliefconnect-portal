@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../core/constants/app_colors.dart';
 import '../core/constants/app_strings.dart';
+import '../core/widgets/app_logo.dart';
 import '../core/widgets/demo_mode_banner.dart';
 import '../models/user_model.dart';
 import '../providers/auth_provider.dart';
@@ -182,16 +183,24 @@ class _MainScaffoldState extends State<MainScaffold> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        title: Row(
           children: [
-            Text(screenTitle),
-            Text(
-              '${user.name} • ${user.role.displayName}',
-              style: TextStyle(
-                fontSize: 11.5,
-                color: Colors.white.withOpacity(0.85),
-                fontWeight: FontWeight.normal,
+            const AppLogo(size: 32),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(screenTitle),
+                  Text(
+                    '${user.name} • ${user.role.displayName}',
+                    style: TextStyle(
+                      fontSize: 11.5,
+                      color: Colors.white.withOpacity(0.85),
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_strings.dart';
+import '../../core/widgets/app_logo.dart';
 import '../../providers/app_state_provider.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/relief_request_provider.dart';
@@ -99,22 +100,7 @@ class _SplashScreenState extends State<SplashScreen>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(22),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.12),
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.white.withOpacity(0.25),
-                            width: 2,
-                          ),
-                        ),
-                        child: const Icon(
-                          Icons.volunteer_activism_rounded,
-                          size: 64,
-                          color: Colors.white,
-                        ),
-                      ),
+                      const AppLogo(size: 96),
                       const SizedBox(height: 24),
                       const Text(
                         AppStrings.appName,
