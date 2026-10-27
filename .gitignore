@@ -57,3 +57,4 @@ firebase_app_id_file.json
 *.key
 service-account*.json
 .env
+.firebase/
