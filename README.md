@@ -201,7 +201,7 @@ To allow faculty evaluators to test all role-based features immediately without 
 2. Tap any demo role chip:
    - **Volunteer:** Logs in as Aarav Sharma (`volunteer@reliefconnect.org`)
    - **Requester:** Logs in as Pooja Verma (`requester@reliefconnect.org`)
-   - **Admin / Coordinator:** Logs in as Dr. Rajesh Nair (`admin@reliefconnect.org`)
+   - **Admin / Coordinator:** Logs in as Dr. Ananya Sharma (`admin@reliefconnect.org`)
 3. The app enters the full role experience with realistic pre-seeded disaster relief data.
 4. You can also switch roles at any time from the app navigation drawer!
 

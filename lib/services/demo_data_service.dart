@@ -58,7 +58,7 @@ class DemoDataService {
       ),
       UserModel(
         id: 'usr_admin_1',
-        name: 'Dr. Rajesh Nair',
+        name: 'Dr. Ananya Sharma',
         email: 'admin@reliefconnect.org',
         phone: '9988776655',
         role: UserRole.admin,
@@ -315,7 +315,7 @@ class DemoDataService {
         details: 'Task "Emergency Flood Evacuation & Boat Support" posted by Coordinator.',
         timestamp: now.subtract(const Duration(days: 1)),
         type: 'task_created',
-        actorName: 'Dr. Rajesh Nair',
+        actorName: 'Dr. Ananya Sharma',
         actorRole: 'Administrator',
       ),
       ActivityLogModel(
@@ -334,7 +334,7 @@ class DemoDataService {
             'Aarav Sharma was approved by coordinator for Task TSK-2026-001.',
         timestamp: now.subtract(const Duration(hours: 15)),
         type: 'status_updated',
-        actorName: 'Dr. Rajesh Nair',
+        actorName: 'Dr. Ananya Sharma',
         actorRole: 'Administrator',
       ),
     ]);
