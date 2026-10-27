@@ -1,310 +1,353 @@
-# ReliefConnect – Disaster Relief Volunteer & Request Coordination Portal
+# ReliefConnect – Disaster Relief Volunteer Portal
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.47+-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
-[![Dart](https://img.shields.io/badge/Dart-3.13+-0175C2?logo=dart&logoColor=white)](https://dart.dev)
-[![Material 3](https://img.shields.io/badge/Design-Material%203-7C3AED)](https://m3.material.io)
-[![Firebase](https://img.shields.io/badge/Backend-Firebase%20%2F%20Firestore-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com)
-[![Evaluation Rubric](https://img.shields.io/badge/Marks-25%2F25%20Optimized-10B981)](#14-evaluation-rubric-mapping-25-marks)
+A Flutter-based disaster relief coordination platform designed to connect volunteers, affected individuals, and relief coordinators through a centralized portal for managing emergency requests and volunteer activities.
 
----
-
-## 1. Project Overview
-
-**ReliefConnect** is a cross-platform Flutter application built to coordinate humanitarian disaster relief during sudden-onset environmental emergencies such as floods, cyclones, landslides, earthquakes, and fires.
-
-The platform bridges three critical disaster stakeholders:
-1. **Volunteers:** Discover on-ground relief operations, register their specialized skills (First Aid, Swimming/Boat Rescue, Medical, Heavy Driving, Food Catering), enroll in missions, and track their participation status.
-2. **Relief Requesters / Affected Citizens:** Submit geolocated emergency petitions specifying required supplies (Food, Potable Drinking Water, Temporary Shelter, First Aid, Rescue Support), affected headcount, and urgency levels.
-3. **Relief Coordinators / Administrators:** Verify incoming petitions, approve or reject volunteer applications, create and publish field tasks, assign manpower, track quotas, and maintain audit logs.
-
-> **Academic Note:** This application was developed as a comprehensive B.Tech / University degree subject project (25 Marks). It includes a fully functional offline-resilient **Demo Mode** with realistic seeded data for instant evaluation, alongside complete **Firebase Authentication & Cloud Firestore** backend integration.
+<p align="center">
+  <a href="https://reliefconnect-portal.web.app">
+    <strong>🚀 Live Application</strong>
+  </a>
+  &nbsp; | &nbsp;
+  <a href="https://github.com/joshillyy/reliefconnect-portal">
+    <strong>💻 GitHub Repository</strong>
+  </a>
+</p>
 
 ---
 
-## 2. Problem Statement & Objectives
+## 📌 Project Overview
 
-### The Problem
-During catastrophic natural events (e.g. Northeast and Coastal monsoon floods), traditional volunteer coordination suffers from severe structural bottlenecks:
-- Unorganized volunteer crowding in easily accessible zones while remote wards remain neglected.
-- Absence of real-time supply tracking (e.g., sending food when the critical bottleneck is medical first aid or drinking water).
-- Lack of role-based verification, creating confusion between civilian pleas and verified administrative response.
+ReliefConnect is a cross-platform application developed to support disaster relief coordination during emergencies such as floods, cyclones, earthquakes, landslides, and fires.
 
-### Core Objectives
-- **Centralized Triage:** Provide an accessible, mobile-first Material 3 interface for submitting and tracking disaster relief petitions.
-- **Skill-Based Volunteer Matching:** Mobilize registered citizen volunteers according to their verified competencies rather than arbitrary assignment.
-- **Dual-Engine Architecture:** Seamlessly toggle between Cloud Firestore live synchronization and an in-memory offline mock database for faculty demonstration.
-- **UN SDG Alignment:** Directly address **SDG 11** (Sustainable Cities & Communities), **SDG 13** (Climate Action), and **SDG 3** (Good Health & Well-being).
+During disasters, affected communities often struggle to communicate their needs, while volunteers and relief organizations face challenges coordinating people, tasks, and resources.
 
----
+ReliefConnect addresses these challenges by providing a centralized platform where affected individuals can submit relief requests, volunteers can discover and join relief activities, and authorized coordinators can manage requests and volunteer operations.
 
-## 3. Technology Stack
+The project is developed as an academic Flutter application with a focus on usability, structured workflows, and social impact.
 
-| Layer | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Framework** | Flutter 3.47+ (Dart 3.13+) | Cross-platform mobile & web client |
-| **Design System** | Material 3 Design | High-contrast, humanitarian color scheme |
-| **State Management** | Provider 6.1.5 | Modular reactive architecture |
-| **Backend & Auth** | Firebase Authentication | Secure email & password auth |
-| **Database** | Cloud Firestore | Persistent NoSQL real-time document store |
-| **Offline Resilience** | In-Memory Demo Service | Seeded dataset ready for offline defense |
-| **Date & Formats** | `intl` 0.20.3 | Timestamps and humanized time-ago display |
-| **Identifiers** | `uuid` 4.6.0 | Unique Request (`REQ-`) and Task (`TSK-`) IDs |
+## 🎯 Problem Statement
 
----
+Disaster response can become inefficient when relief requests, volunteer availability, and task assignments are managed through disconnected communication channels.
 
-## 4. System Architecture & Project Structure
+ReliefConnect aims to improve coordination by organizing emergency assistance requests and volunteer activities in a single application.
 
-ReliefConnect follows a modular, clean multi-tier architecture:
+## ✨ Key Features
 
+### 👥 User Roles
+
+- **Volunteers:** Explore relief tasks, register their skills, participate in activities, and track task status.
+- **Relief Requesters:** Submit requests for assistance and monitor their request progress.
+- **Administrators / Coordinators:** Review relief requests, manage volunteer applications, create relief tasks, and coordinate activities.
+
+### 🆘 Relief Request Management
+
+- Submit requests for food, drinking water, shelter, medical assistance, and other essential needs.
+- Record the affected location, assistance category, urgency, and relevant details.
+- View submitted requests and track their status.
+- Support request review and status management through coordinator workflows.
+
+### 🤝 Volunteer Coordination
+
+- View available relief activities.
+- Search and filter tasks by relevant categories and urgency.
+- View task descriptions, required skills, location, and participation capacity.
+- Join tasks and track participation status.
+- Manage participation according to the task workflow.
+
+### 🛡️ Coordinator Dashboard
+
+- View relief operation statistics.
+- Review and manage submitted requests.
+- Approve or reject volunteer participation.
+- Create, edit, and manage relief tasks.
+- Track task progress and operational activity.
+
+### 📊 Additional Features
+
+- Role-specific dashboards and navigation.
+- Form validation and user feedback.
+- Emergency preparedness checklist.
+- Activity feed and status indicators.
+- Demo mode with sample disaster-relief data for project demonstrations.
+- Firebase integration for authentication and cloud data storage when properly configured.
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Flutter | Cross-platform application development |
+| Dart | Application programming language |
+| Material 3 | User interface and design system |
+| Firebase Authentication | Email and password authentication |
+| Cloud Firestore | Cloud database for application data |
+| Provider | State management |
+| `intl` | Date and time formatting |
+| `uuid` | Unique request and task identifiers |
+| Firebase Hosting | Deployment of the web application |
+| Git and GitHub | Version control and source code submission |
+
+## 🏗️ Project Architecture
+
+The project uses a modular structure to separate the interface, business logic, data models, and backend operations.
+
+```text
+reliefconnect-portal/
+├── android/
+├── ios/
+├── web/
+├── windows/
+├── linux/
+├── macos/
+├── lib/
+│   ├── main.dart
+│   ├── app.dart
+│   ├── core/
+│   │   ├── constants/
+│   │   ├── theme/
+│   │   ├── utils/
+│   │   └── widgets/
+│   ├── models/
+│   ├── services/
+│   ├── repositories/
+│   ├── providers/
+│   ├── screens/
+│   │   ├── auth/
+│   │   ├── volunteer/
+│   │   ├── requests/
+│   │   ├── tasks/
+│   │   ├── admin/
+│   │   ├── profile/
+│   │   ├── activity/
+│   │   └── impact/
+│   └── navigation/
+├── docs/
+├── test/
+├── firebase.json
+├── firestore.rules
+├── firestore.indexes.json
+├── pubspec.yaml
+└── README.md
 ```
-lib/
-├── app.dart                        # MultiProvider root & MaterialApp setup
-├── main.dart                       # App entry point with safe Firebase init
-├── firebase_options.dart           # FlutterFire configuration template
-├── core/
-│   ├── constants/
-│   │   ├── app_colors.dart         # Material 3 Navy & Emergency Red palette
-│   │   ├── app_constants.dart      # Disasters, skills, assistance categories
-│   │   └── app_strings.dart        # Academic and helpline strings
-│   ├── theme/
-│   │   └── app_theme.dart          # M3 ThemeData with CardThemeData & TabBarThemeData
-│   ├── utils/
-│   │   ├── date_formatter.dart     # Timestamp & time-ago formatters
-│   │   └── validators.dart         # Email, password, phone, positive integer checks
-│   └── widgets/
-│       ├── custom_button.dart      # Standard & outlined buttons with spinners
-│       ├── custom_text_field.dart  # Form inputs with visibility toggles
-│       ├── demo_mode_banner.dart   # Interactive mode switcher banner
-│       ├── emergency_alert_card.dart# Official 112/108 notice card
-│       ├── empty_state_view.dart   # Clean empty state indicators
-│       ├── error_view.dart         # Failure state views with retry
-│       ├── loading_indicator.dart  # Humanitarian branded loader
-│       └── status_badge.dart       # Urgency & workflow status pills
-├── models/
-│   ├── user_model.dart             # UserModel with UserRole enum (volunteer, requester, admin)
-│   ├── relief_request_model.dart   # ReliefRequestModel with urgency & status
-│   ├── relief_task_model.dart      # ReliefTaskModel with capacity metrics
-│   ├── task_participant_model.dart # TaskParticipantModel for enrollment lifecycle
-│   └── activity_log_model.dart     # Real-time audit & notification logs
-├── services/
-│   ├── firebase_service.dart       # Safe Firebase initialization wrapper
-│   └── demo_data_service.dart      # Realistic disaster relief dataset
-├── repositories/
-│   ├── auth_repository.dart        # Auth operations (Firebase + Demo fallback)
-│   ├── relief_request_repository.dart # Request CRUD & status updates
-│   ├── relief_task_repository.dart # Task management & volunteer enrollment
-│   └── activity_repository.dart    # Activity audit log retrieval
-├── providers/
-│   ├── app_state_provider.dart     # Global Demo Mode toggle & network state
-│   ├── auth_provider.dart          # Auth state, current user, 1-click test roles
-│   ├── relief_request_provider.dart# Request filtering, stats, & submission
-│   ├── relief_task_provider.dart   # Task filtering, enrollment & capacity
-│   └── activity_provider.dart      # Recent incident notifications
-├── screens/
-│   ├── auth/                       # Splash, Onboarding, Login, Register, Forgot Password
-│   ├── volunteer/                  # Volunteer Dashboard & My Tasks
-│   ├── tasks/                      # Browse Tasks & Task Details
-│   ├── requests/                   # Submit Request, My Requests, Request Details
-│   ├── admin/                      # Admin Dashboard, Manage Requests, Manage Tasks, Create/Edit Task, Manage Volunteers
-│   ├── profile/                    # Profile View & Edit Profile
-│   ├── activity/                   # Activity Feed & Incident Logs
-│   └── impact/                     # UN SDG Alignment & Emergency Preparedness
-└── navigation/
-    └── main_scaffold.dart          # Role-based adaptive bottom navigation
-```
 
----
+## 🚀 Live Demo
 
-## 5. Main Screens (21 Fully Implemented Screens)
+Try the deployed application:
 
-1. **Splash Screen:** Branded humanitarian loading animation with initialization check.
-2. **Onboarding Screen:** 3-step carousel presenting rapid response, volunteer mobilization, and SDG alignment.
-3. **Login Screen:** Email/password validation, password reveal toggle, and 1-Click Quick Demo Login buttons for viva.
-4. **Registration Screen:** Role selection with Coordinator Bootstrap Key validation (`RELIEF2026`).
-5. **Forgot Password Screen:** Firebase Authentication password reset dispatch with feedback.
-6. **Volunteer Dashboard:** Emergency metrics, urgent task cards, and quick actions.
-7. **Browse Tasks Screen:** Multi-parameter search and modal filters (Disaster, Urgency, Category).
-8. **Task Details Screen:** Capacity progress bar, skills tags, location, and real join/withdraw actions.
-9. **My Tasks Screen:** Tabbed filter view (All, Pending, Approved, In Progress, Completed) with withdrawal actions.
-10. **Submit Relief Request Screen:** Exact location, assistance dropdown, affected count, and urgency selector.
-11. **My Relief Requests Screen:** Tracking list of personal emergency requests.
-12. **Relief Request Details Screen:** Progress timeline and administrative remarks.
-13. **Volunteer Profile Screen:** Verified skills, base location, and volunteering history.
-14. **Edit Profile Screen:** Skill selection chips with immutable role security.
-15. **Administrator Dashboard:** Comprehensive metrics (Requests, Pending, Critical, Active Operations).
-16. **Manage Relief Requests:** Full request triage with inline status advancement (Approve, Dispatch, Resolve).
-17. **Manage Volunteers Screen:** Coordinator approval/rejection of volunteer applications.
-18. **Manage Relief Tasks Screen:** Operation status lifecycle (Open, In Progress, Completed, Cancelled).
-19. **Create / Edit Task Screen:** Form for creating or modifying field operations.
-20. **Notifications & Activity Feed Screen:** Real-time audit logs of task creations and approvals.
-21. **UN SDG Impact Screen:** Comprehensive analysis of SDG 11, SDG 13, and SDG 3 alignment.
-22. **Emergency Preparedness & Checklist:** 72-Hour Survival Go-Bag checklist and official 112/108 helplines.
+**[Open ReliefConnect](https://reliefconnect-portal.web.app)**
 
----
+The project also includes a demo mode intended to help evaluators explore the application's role-specific interfaces using sample data.
 
-## 6. Security & Role Protection
+For demonstration, use the available demo-role options on the login screen if they are enabled in the deployed version.
 
-- **Role Immutability:** Ordinary users cannot modify their roles client-side.
-- **Admin Bootstrap Key:** Coordinator registration strictly requires a verified bootstrap key (`RELIEF2026`).
-- **Firestore Security Rules:** A complete `firestore.rules` file enforces that only admins can update task documents or approve volunteers, while users can only modify their own profile data.
-- **Zero Hardcoded Secrets:** No Google service-account private keys or sensitive credentials are committed to version control.
+Demo data should not be treated as real emergency reports or live relief operations.
 
----
-
-## 7. Installation & Quick Start
+## 💻 Run the Project Locally
 
 ### Prerequisites
-- Flutter SDK (version 3.24.0 or newer; tested with Flutter 3.47.7 on Dart 3.13.5).
-- Android Studio / VS Code with Flutter extension.
-- Chrome browser or Android emulator / physical device.
 
-### Running the Application
+Install the following tools:
 
-1. **Clone the repository:**
-   ```bash
-   git clone <YOUR_REPOSITORY_URL>
-   cd frndd
-   ```
+- [Flutter SDK](https://docs.flutter.dev/get-started/install)
+- [Dart SDK](https://dart.dev/get-dart) — included with Flutter
+- [Git](https://git-scm.com/downloads)
+- [Google Chrome](https://www.google.com/chrome/) for running the web version
+- [Firebase Console](https://console.firebase.google.com/) if you want to configure your own Firebase backend
 
-2. **Install Flutter dependencies:**
-   ```bash
-   flutter pub get
-   ```
+### Step 1: Clone the repository
 
-3. **Run automated test suite:**
-   ```bash
-   flutter test
-   ```
-   *(All 12 unit & widget tests will execute and pass).*
+Open a terminal and run:
 
-4. **Launch the application:**
-   - To run on Windows Desktop:
-     ```bash
-     flutter run -d windows
-     ```
-   - To run on Chrome (Flutter Web):
-     ```bash
-     flutter run -d chrome
-     ```
-   - To run on Android Emulator/Device:
-     ```bash
-     flutter run -d android
-     ```
+```bash
+git clone https://github.com/joshillyy/reliefconnect-portal.git
+cd reliefconnect-portal
+```
 
----
+### Step 2: Check the Flutter installation
 
-## 8. Demo Mode (Faculty Evaluation Shortcut)
+```bash
+flutter doctor
+```
 
-To allow faculty evaluators to test all role-based features immediately without requiring prior Firebase console setup:
+Resolve any required Flutter setup issues before proceeding.
 
-1. On the **Login Screen**, locate the **Quick Demo Roles** card.
-2. Tap any demo role chip:
-   - **Volunteer:** Logs in as Aarav Sharma (`volunteer@reliefconnect.org`)
-   - **Requester:** Logs in as Pooja Verma (`requester@reliefconnect.org`)
-   - **Admin / Coordinator:** Logs in as Dr. Ananya Sharma (`admin@reliefconnect.org`)
-3. The app enters the full role experience with realistic pre-seeded disaster relief data.
-4. You can also switch roles at any time from the app navigation drawer!
+### Step 3: Install dependencies
 
----
+```bash
+flutter pub get
+```
 
-## 9. Live Firebase Setup (Optional)
+### Step 4: Run automated tests
 
-When you wish to synchronize data with a live Cloud Firestore instance:
-
-1. Create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com).
-2. Enable **Authentication** (Email/Password provider).
-3. Enable **Cloud Firestore** in Production mode.
-4. Deploy the supplied security rules:
-   ```bash
-   firebase deploy --only firestore:rules,firestore:indexes
-   ```
-5. Configure FlutterFire:
-   ```bash
-   dart pub global activate flutterfire_cli
-   flutterfire configure
-   ```
-6. Place your `google-services.json` in `android/app/`.
-7. Re-run `flutter run`. The top banner will update to:  
-   `LIVE FIREBASE MODE — Synchronized with Cloud Firestore`.
-
----
-
-## 10. Automated Tests & Verification
-
-Run the test suite using:
 ```bash
 flutter test
 ```
-**Test Coverage Includes:**
-- Form validation checks (email syntax, phone length, password minimums, positive integers).
-- Data model serialization, deserialization, and `copyWith` functionality.
-- Task volunteer capacity math and spots remaining logic.
-- Task participant lifecycle state transitions.
-- Widget rendering and emergency notice component tests.
-- Full splash-to-onboarding timer simulation.
 
-Run static analysis using:
+### Step 5: Run the application
+
+To launch the web version in Chrome:
+
+```bash
+flutter run -d chrome
+```
+
+To run on a connected Android device or emulator:
+
+```bash
+flutter devices
+flutter run
+```
+
+To check the Dart code for potential issues:
+
 ```bash
 flutter analyze
 ```
 
----
+## 🔥 Firebase Configuration
 
-## 11. Git Commands for Submission
+ReliefConnect includes Firebase Authentication and Cloud Firestore integration. To use a separate Firebase project, configure the Firebase services before running the application in live mode.
+
+### 1. Create a Firebase project
+
+Visit the [Firebase Console](https://console.firebase.google.com/) and create a project.
+
+### 2. Enable Authentication
+
+In Firebase Console:
+
+1. Open **Authentication**.
+2. Select **Sign-in method**.
+3. Enable **Email/Password** authentication.
+
+### 3. Create Cloud Firestore
+
+1. Open **Firestore Database**.
+2. Create a database.
+3. Review and deploy the project's Firestore security rules.
+
+### 4. Configure FlutterFire
+
+Install and configure the FlutterFire CLI using the [official Firebase Flutter setup guide](https://firebase.google.com/docs/flutter/setup).
 
 ```bash
-# 1. Initialize local Git repository (if not already initialized)
-git init
-
-# 2. Add all project files
-git add .
-
-# 3. Create initial commit
-git commit -m "Initial commit: ReliefConnect Disaster Relief Volunteer Portal complete implementation"
-
-# 4. Link your remote GitHub repository
-git remote add origin https://github.com/<your-username>/reliefconnect-portal.git
-
-# 5. Push to GitHub main branch
-git branch -M main
-git push -u origin main
+dart pub global activate flutterfire_cli
+flutterfire configure
 ```
 
+Follow the prompts to select your Firebase project and supported platforms.
+
+### 5. Deploy Firestore rules and indexes
+
+After verifying the configuration and rules for your Firebase project, install the Firebase CLI if needed, authenticate, and deploy:
+
+```bash
+firebase login
+firebase deploy --only firestore:rules,firestore:indexes
+```
+
+Review the rules before deployment and ensure administrator privileges are provisioned securely.
+
+### 6. Run the application
+
+```bash
+flutter pub get
+flutter run -d chrome
+```
+
+**Note:** Demo mode and live Firebase mode are different. Successful local execution does not by itself confirm that authentication, Firestore access, and administrative permissions are correctly configured.
+
+## 🌍 Sustainable Development Goals (SDGs)
+
+ReliefConnect supports the objectives of the United Nations Sustainable Development Goals through its disaster-relief coordination concept.
+
+### SDG 11 – Sustainable Cities and Communities
+
+Supports community resilience by organizing relief requests and coordinating volunteers during disasters.
+
+### SDG 13 – Climate Action
+
+Promotes disaster preparedness and coordinated community responses to climate-related emergencies, including floods and cyclones.
+
+### SDG 3 – Good Health and Well-being
+
+Supports the coordination of medical assistance and other essential relief needs during emergencies.
+
+The application demonstrates how digital tools can contribute to disaster preparedness and relief coordination. Its actual impact depends on adoption, reliable information, and collaboration with appropriate response organizations.
+
+## 🧪 Testing and Verification
+
+Run the following commands from the project root:
+
+```bash
+dart format .
+flutter analyze
+flutter test
+```
+
+Recommended manual verification:
+
+- Registration, login, and logout.
+- Input validation and error messages.
+- Relief request submission and status tracking.
+- Volunteer task browsing and participation.
+- Coordinator request and task management.
+- Role-based access restrictions.
+- Demo mode and sample-data workflows.
+- Firebase operations with the intended project configuration.
+- Web application loading and navigation.
+
+Review command output and test results before reporting the application as fully verified.
+
+## 📚 Project Documentation
+
+The repository contains a `docs/` directory intended for project documentation and academic submission materials.
+
+Use the available documents to prepare:
+
+- Project synopsis.
+- Academic project report.
+- System architecture and module descriptions.
+- Demonstration checklist.
+- Viva presentation and questions.
+- Evaluation rubric mapping.
+
+## 🎓 Academic Evaluation Mapping
+
+| Evaluation Criterion | Marks | Project Contribution |
+|---|---:|---|
+| UI/UX Design | 5 | Material 3 interface, role-specific dashboards, reusable widgets, and navigation |
+| Functionality and Features | 7 | Relief requests, volunteer tasks, participation workflows, and coordinator management |
+| Flutter Coding and Implementation | 5 | Dart, Flutter widgets, Provider, modular architecture, and Firebase integration |
+| SDG Relevance and Social Impact | 3 | SDG 11, SDG 13, SDG 3, and disaster preparedness |
+| GitHub Submission and VEDIC Portal Link | 2 | Public source repository, README, setup instructions, and project link |
+| Project Documentation | 3 | Report, synopsis, testing documentation, and viva preparation |
+| **Total** | **25** | **Complete project evaluation criteria** |
+
+This table maps the project components to the evaluation rubric; the marks awarded depend on the implementation and faculty assessment.
+
+## 🔮 Future Enhancements
+
+Potential future improvements include:
+
+- Multilingual support for regional communities.
+- Verified integration with official emergency information sources.
+- Location-aware relief coordination.
+- Push notifications for request and task updates.
+- Improved offline data handling and synchronization.
+- Accessibility enhancements for users in emergency situations.
+- Collaboration workflows for NGOs and authorized relief organizations.
+
+## ⚠️ Disclaimer
+
+ReliefConnect is an academic project intended to demonstrate disaster-relief coordination workflows. It is not an official emergency response service and does not replace local authorities, medical services, or emergency dispatch systems.
+
+For immediate danger, contact the appropriate official emergency service.
+
+## 👩‍💻 Repository
+
+**GitHub:** [joshillyy/reliefconnect-portal](https://github.com/joshillyy/reliefconnect-portal)
+
+**Live application:** [reliefconnect-portal.web.app](https://reliefconnect-portal.web.app)
+
 ---
 
-## 12. VEDIC Portal Link Submission Instructions
-
-1. Log into your university **VEDIC Portal** using your student credentials.
-2. Navigate to the **Subject Assignment / Project Submission** tab for Flutter Application Development.
-3. Locate the entry for **Course Project (25 Marks)**.
-4. Enter your Project Title:  
-   `ReliefConnect – Disaster Relief Volunteer Portal`
-5. Paste your public GitHub repository URL into the **GitHub Repository URL** field.
-6. In the remarks or synopsis field, paste the contents of `docs/PROJECT_SYNOPSIS.md`.
-7. Click **Submit Project**.
-
----
-
-## 13. Documentation Deliverables
-
-The project includes five dedicated academic deliverables located in the `docs/` folder:
-- **`docs/ACADEMIC_PROJECT_REPORT.md`**: Complete 25-section academic report (Title, Certificate, Abstract, Architecture, Schemas, Testing, SDG analysis).
-- **`docs/PROJECT_SYNOPSIS.md`**: Formal project synopsis ready for submission.
-- **`docs/DEMONSTRATION_CHECKLIST.md`**: Step-by-step faculty demonstration checklist.
-- **`docs/VIVA_PRESENTATION_SCRIPT.md`**: 3–5 minute viva presentation script.
-- **`docs/VIVA_QUESTIONS_AND_ANSWERS.md`**: 15+ comprehensive viva questions and answers.
-- **`docs/FEATURE_EVALUATION_RUBRIC.md`**: Evaluation rubric mapping table (25 Marks).
-
----
-
-## 14. Evaluation Rubric Mapping (25 Marks)
-
-| Criteria | Marks | Project Implementation Details |
-| :--- | :---: | :--- |
-| **A. UI/UX Design** | **5** | Material 3 design, Deep Navy & Emergency Red palette, responsive cards, status badges, accessibility contrast, smooth animations. |
-| **B. Functionality & Features** | **7** | Real database persistence, volunteer task registration, relief petition submission, coordinator status triage, duplicate join prevention, withdrawal workflow. |
-| **C. Flutter Coding & Implementation** | **5** | Clean modular architecture, Provider state management, null-safety, zero analyzer compilation errors, comprehensive unit and widget tests. |
-| **D. SDG Relevance & Social Impact** | **3** | Direct alignment with SDG 11, SDG 13, and SDG 3; emergency helpline notices (112/108), interactive Go-Bag checklist, academic disclaimer. |
-| **E. GitHub Code Submission & VEDIC** | **2** | Clean repository, `.gitignore` omitting secrets, comprehensive README with Git & VEDIC portal submission guide. |
-| **F. Project Documentation** | **3** | Full 25-chapter academic report, project synopsis, viva script, viva Q&A, and demonstration checklist. |
-| **TOTAL** | **25 / 25** | **Fully Satisfied** |
+*ReliefConnect — Connecting people, coordinating volunteers, and supporting communities during disasters.*
