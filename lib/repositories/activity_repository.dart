@@ -5,7 +5,9 @@ import '../services/demo_data_service.dart';
 import '../services/firebase_service.dart';
 
 class ActivityRepository {
-  bool get _isLiveFirebase => FirebaseService.instance.isInitialized;
+  bool get _isLiveFirebase =>
+      FirebaseService.instance.isInitialized &&
+      FirebaseService.instance.hasRealFirebaseConfig;
 
   Future<List<ActivityLogModel>> getActivities({bool forceDemo = false}) async {
     if (!_isLiveFirebase || forceDemo) {

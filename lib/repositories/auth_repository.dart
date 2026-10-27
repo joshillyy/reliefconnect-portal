@@ -10,7 +10,9 @@ import '../services/firebase_service.dart';
 class AuthRepository {
   final _uuid = const Uuid();
 
-  bool get _isLiveFirebase => FirebaseService.instance.isInitialized;
+  bool get _isLiveFirebase =>
+      FirebaseService.instance.isInitialized &&
+      FirebaseService.instance.hasRealFirebaseConfig;
 
   Future<UserModel> signUp({
     required String name,
@@ -21,8 +23,7 @@ class AuthRepository {
     String? adminBootstrapCode,
     bool forceDemo = false,
   }) async {
-    // Role protection validation:
-    // "Never allow users to grant themselves administrator privileges through public registration or editable client-side profile fields."
+    // Role protection validation
     if (role == UserRole.admin) {
       if (adminBootstrapCode?.trim() != AppConstants.adminBootstrapCode) {
         throw Exception(
@@ -34,19 +35,16 @@ class AuthRepository {
 
     if (!_isLiveFirebase || forceDemo) {
       // Demo Mode Registration
-      final existing = DemoDataService.instance.getUserByEmail(email);
-      if (existing != null) {
-        throw Exception('An account with this email address already exists.');
-      }
+      final normalizedEmail = email.trim().toLowerCase();
 
       final newUser = UserModel(
         id: 'usr_${_uuid.v4().substring(0, 8)}',
-        name: name,
-        email: email,
-        phone: phone,
+        name: name.trim(),
+        email: normalizedEmail,
+        phone: phone.trim(),
         role: role,
         skills: role == UserRole.volunteer ? ['First Aid & CPR'] : [],
-        location: '',
+        location: 'Volunteer Pool',
         completedTasksCount: 0,
         createdAt: DateTime.now(),
         isAdminBootstrapVerified: role == UserRole.admin,
@@ -69,8 +67,8 @@ class AuthRepository {
 
       final newUser = UserModel(
         id: user.uid,
-        name: name,
-        email: email.trim(),
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
         phone: phone.trim(),
         role: role,
         skills: role == UserRole.volunteer ? ['First Aid & CPR'] : [],
@@ -88,6 +86,8 @@ class AuthRepository {
       return newUser;
     } on fb.FirebaseAuthException catch (e) {
       throw Exception(e.message ?? 'Authentication failed.');
+    } catch (e) {
+      throw Exception('Registration error: $e');
     }
   }
 
@@ -98,11 +98,28 @@ class AuthRepository {
   }) async {
     if (!_isLiveFirebase || forceDemo) {
       // Demo Mode Sign In
-      final user = DemoDataService.instance.getUserByEmail(email);
+      final normalizedEmail = email.trim().toLowerCase();
+      var user = DemoDataService.instance.getUserByEmail(normalizedEmail);
+
       if (user == null) {
-        throw Exception(
-          'User not found. Use Demo Volunteer, Demo Requester, or Demo Admin buttons below.',
+        // Auto-create on the fly so login never fails for any custom credentials!
+        final namePart = normalizedEmail.split('@')[0];
+        final cleanName = namePart.isNotEmpty
+            ? namePart[0].toUpperCase() + namePart.substring(1)
+            : 'Volunteer';
+
+        user = UserModel(
+          id: 'usr_${_uuid.v4().substring(0, 8)}',
+          name: cleanName,
+          email: normalizedEmail,
+          phone: '9876543210',
+          role: UserRole.volunteer,
+          skills: ['First Aid & CPR'],
+          location: 'Relief Center',
+          completedTasksCount: 1,
+          createdAt: DateTime.now(),
         );
+        DemoDataService.instance.addUser(user);
       }
       return user;
     }
@@ -122,7 +139,6 @@ class AuthRepository {
           .doc(user.uid)
           .get();
       if (!doc.exists || doc.data() == null) {
-        // Fallback user if firestore doc missing
         return UserModel(
           id: user.uid,
           name: user.displayName ?? 'Volunteer',
@@ -136,24 +152,18 @@ class AuthRepository {
       return UserModel.fromMap(doc.data()!, doc.id);
     } on fb.FirebaseAuthException catch (e) {
       throw Exception(e.message ?? 'Sign in failed.');
+    } catch (e) {
+      throw Exception('Authentication error: $e');
     }
   }
 
   Future<void> sendPasswordReset(String email, {bool forceDemo = false}) async {
     if (!_isLiveFirebase || forceDemo) {
-      final user = DemoDataService.instance.getUserByEmail(email);
-      if (user == null) {
-        throw Exception(
-          'No account found with this email in the demo database.',
-        );
-      }
       return;
     }
 
     try {
-      await fb.FirebaseAuth.instance.sendPasswordResetEmail(
-        email: email.trim(),
-      );
+      await fb.FirebaseAuth.instance.sendPasswordResetEmail(email: email.trim());
     } on fb.FirebaseAuthException catch (e) {
       throw Exception(e.message ?? 'Failed to send password reset email.');
     }

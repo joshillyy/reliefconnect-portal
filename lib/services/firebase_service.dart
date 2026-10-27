@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import '../firebase_options.dart';
 
 class FirebaseService {
@@ -10,40 +9,43 @@ class FirebaseService {
   bool _isInitialized = false;
   bool get isInitialized => _isInitialized;
 
-  Future<bool> initialize() async {
+  bool get hasRealFirebaseConfig {
     try {
-      // Check if Firebase is already initialized
+      final key = DefaultFirebaseOptions.currentPlatform.apiKey;
+      return key.isNotEmpty &&
+          !key.contains('Placeholder') &&
+          !key.contains('Demo') &&
+          key != 'AIzaSyDemoPlaceholderWebKey';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> initialize() async {
+    // If credentials are only placeholder templates, keep live mode disabled
+    if (!hasRealFirebaseConfig) {
+      _isInitialized = false;
+      debugPrint(
+        '[ReliefConnect] Live Firebase project not yet configured. Running in DEMO MODE with instant local authentication.',
+      );
+      return false;
+    }
+
+    try {
       if (Firebase.apps.isNotEmpty) {
         _isInitialized = true;
-        debugPrint('[ReliefConnect] Firebase already initialized.');
         return true;
       }
 
-      // Try initializing Firebase with platform options
-      try {
-        await Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        );
-        _isInitialized = true;
-        debugPrint(
-          '[ReliefConnect] Firebase initialized successfully with DefaultFirebaseOptions.',
-        );
-        return true;
-      } catch (innerError) {
-        // Fallback to default initializeApp
-        await Firebase.initializeApp();
-        _isInitialized = true;
-        debugPrint(
-          '[ReliefConnect] Firebase initialized with system default config.',
-        );
-        return true;
-      }
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      _isInitialized = true;
+      debugPrint('[ReliefConnect] Firebase initialized with real credentials.');
+      return true;
     } catch (e) {
       _isInitialized = false;
-      debugPrint(
-        '[ReliefConnect] Live Firebase not configured on this machine: $e\n'
-        'Activating offline DEMO MODE with realistic disaster relief data for faculty evaluation.',
-      );
+      debugPrint('[ReliefConnect] Firebase initialization failed: $e. Using Demo Mode.');
       return false;
     }
   }

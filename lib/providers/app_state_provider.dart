@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-
 import '../services/firebase_service.dart';
 
 class AppStateProvider extends ChangeNotifier {
-  bool _isDemoMode =
-      true; // Defaults to safe demo mode unless Firebase is verified
+  bool _isDemoMode = true; // Defaults to reliable demo mode
   bool _initialized = false;
 
   bool get isDemoMode => _isDemoMode;
   bool get isInitialized => _initialized;
-  bool get isFirebaseAvailable => FirebaseService.instance.isInitialized;
+  bool get isFirebaseAvailable =>
+      FirebaseService.instance.isInitialized &&
+      FirebaseService.instance.hasRealFirebaseConfig;
 
   void initialize() {
-    // If Firebase initialized cleanly, we can allow live mode, otherwise lock to demo
-    if (FirebaseService.instance.isInitialized) {
+    if (isFirebaseAvailable) {
       _isDemoMode = false;
     } else {
       _isDemoMode = true;
@@ -23,8 +22,7 @@ class AppStateProvider extends ChangeNotifier {
   }
 
   void toggleDemoMode(bool enableDemo) {
-    if (!enableDemo && !FirebaseService.instance.isInitialized) {
-      // Cannot enable live Firebase if not initialized
+    if (!enableDemo && !isFirebaseAvailable) {
       return;
     }
     _isDemoMode = enableDemo;
